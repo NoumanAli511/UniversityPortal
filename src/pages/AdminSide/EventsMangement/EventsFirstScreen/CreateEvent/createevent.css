@@ -1,0 +1,29 @@
+.add-event-container {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+
+.add-event-container input,
+.add-event-container textarea {
+  display: block;
+  width: 80%;
+  margin: 8px auto;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-event-container button {
+  margin-top: 16px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #28a745;
+  color: white;
+  cursor: pointer;
+}
+
+.add-event-container button:hover {
+  background-color: #218838;
+}

@@ -1,0 +1,48 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.heading {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.input {
+  flex: 1;
+  height: 40px;
+  padding-left: 10px;
+  border: none;
+  outline: none;
+}
+
+.saveButton {
+  background-color: blue;
+  padding: 12px 30px;
+  border-radius: 25px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonText {
+  color: rgb(0, 0, 0);
+  font-size: 16px;
+  font-weight: bold;
+}

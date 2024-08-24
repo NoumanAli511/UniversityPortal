@@ -1,0 +1,39 @@
+html {
+  font-size: 62.5%;
+}
+body {
+  margin: 0;
+  background-color: rgb(0, 159, 180);
+}
+h1 {
+  font-size: 32px;
+}
+h2 {
+  font-size: 28px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 20px;
+}
+p {
+  font-size: 16px;
+}
+a {
+  font-size: 14px;
+  text-decoration: none;
+  color: black;
+}
+
+.btn {
+  align-items: center;
+  text-align: center;
+  color: rgb(255, 255, 255);
+  background-color: blue;
+  width: 150px;
+  padding: 1rem;
+  border-radius: 10px;
+  border: none;
+  margin: 0.5rem;
+}

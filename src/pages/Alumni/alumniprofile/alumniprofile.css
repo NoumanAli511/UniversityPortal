@@ -1,0 +1,54 @@
+.alumniprofilePage__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 325px;
+  margin: 4rem auto;
+}
+
+.alumniprofilePage__logo {
+  width: 40%;
+  height: auto;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.alumniprofilePage__heading {
+  margin-top: 7%;
+  text-align: center;
+}
+.my-input {
+  padding: 8px;
+  margin: 8px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  width: 90%;
+}
+
+.alumniprofilePage__input {
+  margin-top: 10%;
+
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+.alumniprofile__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
+.editbtn {
+  width: 40%;
+  border-radius: 15%;
+}
+.rows_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-content: center;
+  align-items: center;
+}

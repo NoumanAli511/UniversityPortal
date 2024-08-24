@@ -1,0 +1,21 @@
+.mainselectstudent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+  box-sizing: border-box;
+}
+.headingselectstudent {
+  align-items: center;
+
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: rgb(30, 255, 0);
+}
+.iconselectstudent {
+  align-items: center;
+  margin-top: 2px;
+  justify-content: center;
+  justify-items: center;
+  margin-left: 10px;
+  padding: 30px;
+}

@@ -1,0 +1,161 @@
+/* Container should fit within the viewport height */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Viewport height */
+  overflow-y: auto; /* Allow scrolling if content exceeds screen height */
+  padding: 20px;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+}
+
+/* Header styling */
+.header {
+  flex-shrink: 0;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.headerText {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Event list styling */
+.eventList {
+  flex-grow: 1; /* Allow the list to grow and take up remaining space */
+  overflow-y: auto; /* Ensure the event list can scroll if it's too tall */
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+/* Event item styling */
+.eventItem {
+  display: flex;
+  align-items: center;
+  background-color: #f9f9f9;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.eventImage {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  margin-right: 20px;
+}
+
+.eventDetails {
+  flex-grow: 1;
+}
+
+.eventTitle {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.eventDate,
+.eventVenue,
+.eventDescription {
+  margin-top: 5px;
+  color: #777;
+}
+
+/* Edit and delete buttons */
+.editButton,
+.deleteButton {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.deleteButton {
+  right: 50px; /* Adjust positioning */
+}
+
+/* Add event form styling */
+.addEventForm {
+  flex-shrink: 0; /* Prevent form from shrinking */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.description {
+  height: 60px;
+}
+
+.addButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #0088b4;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.addButton:hover {
+  background-color: #007aa3;
+}
+
+/* Modal for viewing image */
+.modalContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modalImage {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 8px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.addEventButton {
+  border: 0;
+  background-color: goldenrod;
+  width: 30%;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.addEventButton:hover {
+  font-weight: bold;
+}

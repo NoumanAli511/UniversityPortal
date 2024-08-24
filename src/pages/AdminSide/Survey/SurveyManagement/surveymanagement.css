@@ -1,0 +1,28 @@
+.maincreatemanage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+  box-sizing: border-box;
+}
+.headersurveycontent {
+  align-items: center;
+  margin-top: 9%;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: aliceblue;
+}
+.historypict {
+  margin: 2vh 0vh 0vh 8vh;
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.createsurvey {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}

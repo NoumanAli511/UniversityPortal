@@ -1,0 +1,22 @@
+.alumnievents_maincontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 325px;
+  margin: 4rem auto;
+}
+.alumnievents_heading {
+  margin-top: 7%;
+  text-align: center;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.btnView3 {
+  padding-left: 150px;
+  align-items: end;
+}
+.alumnievents_image {
+  width: 200px;
+  height: 150px;
+}

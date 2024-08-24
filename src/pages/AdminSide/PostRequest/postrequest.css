@@ -1,0 +1,38 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #d3d3d3;
+  height: 100vh;
+}
+
+.itemContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.text {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.button {
+  background-color: #0088b4;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.buttonText {
+  color: white;
+  font-size: 16px;
+}
+
+.icon {
+  font-size: 24px;
+  margin-right: 10px;
+}

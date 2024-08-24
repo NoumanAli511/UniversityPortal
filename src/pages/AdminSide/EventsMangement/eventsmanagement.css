@@ -1,0 +1,28 @@
+.maineventsmanage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 40vh;
+  box-sizing: border-box;
+}
+.headercontent {
+  align-items: center;
+  margin-top: 9%;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  color: aliceblue;
+}
+.historypic {
+  margin: 2vh 0vh 0vh 8vh;
+  width: 130px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.createevents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}

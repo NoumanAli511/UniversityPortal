@@ -1,0 +1,35 @@
+.Alumnidashboard__maincontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  min-height: 100vh;
+}
+.Alumnidashboard__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-content: center;
+  text-align: center;
+  width: 300px;
+  box-sizing: border-box;
+}
+.Alumnidashboard__btn {
+  display: flex;
+  justify-content: center;
+  align-content: space-around;
+  background-color: aliceblue;
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  margin: 1rem 0;
+}
+.biit {
+  color: whitesmoke;
+}
+.AlumnidashboardPage__logo {
+  width: 40%;
+  height: auto;
+  border-radius: 50%;
+  margin: 0 auto;
+}

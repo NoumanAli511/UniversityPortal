@@ -1,0 +1,77 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  padding: 20px;
+}
+
+.header {
+  background-color: #0088b4;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.headerText {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.inputContainer {
+  margin-bottom: 20px;
+}
+
+.label {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: #333;
+  background-color: white;
+}
+
+.imagePickerContainer {
+  margin-bottom: 20px;
+}
+
+.saveButton {
+  background-color: #0088b4;
+  padding: 15px 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.buttonText {
+  margin-left: 5px;
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo {
+  width: 150px;
+  height: 150px;
+}
+
+.selectedImage {
+  width: 40%;
+  height: auto;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}

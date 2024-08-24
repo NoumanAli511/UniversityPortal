@@ -1,0 +1,85 @@
+/* EditProfile.css */
+.edit-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  width: 100%;
+  max-width: 400px;
+  padding: 20px;
+  box-sizing: border-box;
+  justify-content: center;
+}
+.edit-profile-maincontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-profile-container h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #1a1a1a;
+  text-align: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.input-container label {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.input-container input {
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+.save-changes-button {
+  padding: 10px 10px;
+  font-size: 1.2rem;
+  color: white;
+  margin-left: 20px;
+  background-color: #0018a1;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  justify-self: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+.phone {
+  font-size: 50px;
+}
+.save-changes-button:hover {
+  background-color: #40908c;
+}
+
+.save-changes-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+@media (max-width: 480px) {
+  .edit-profile-container {
+    padding: 10px;
+  }
+
+  .input-container input {
+    padding: 5px;
+  }
+
+  .save-changes-button {
+    padding: 5px 10px;
+  }
+}

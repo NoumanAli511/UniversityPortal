@@ -1,0 +1,84 @@
+/* Mates.css */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  background-color: #f5f5f5;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.pickerContainer {
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.picker {
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 10px;
+}
+
+.searchButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  padding: 12px 30px;
+  border-radius: 25px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.searchIcon {
+  margin-right: 10px;
+}
+
+.buttonText {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.results {
+  margin-top: 20px;
+}
+
+.resultItem {
+  padding: 15px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.resultTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+.resultValue {
+  font-weight: 500;
+}
+
+.errorText {
+  text-align: center;
+  color: red;
+}

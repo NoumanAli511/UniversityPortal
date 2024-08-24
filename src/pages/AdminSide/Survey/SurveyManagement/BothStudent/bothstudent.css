@@ -1,0 +1,82 @@
+.container {
+  padding: 20px;
+  background-color: #f0f0f0;
+}
+
+.header {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #ffffff;
+}
+
+.questionContainer {
+  margin-bottom: 20px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.questionInput,
+.optionInput {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.optionsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.optionInput {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.optionInput:last-child {
+  margin-right: 0;
+}
+
+.deleteButton {
+  background-color: red;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 8px 12px;
+  cursor: pointer;
+  float: right;
+}
+
+.addButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0088b4;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.addButton i {
+  margin-right: 5px;
+}
+
+.nextButton {
+  background-color: #0088b4;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
