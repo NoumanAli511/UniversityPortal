@@ -1,38 +1,63 @@
-.container {
+.job-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: #d3d3d3;
-  height: 100vh;
+  gap: 20px;
 }
 
-.itemContainer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.text {
-  font-size: 16px;
-  margin-right: 10px;
-}
-
-.button {
-  background-color: #0088b4;
+.job-list {
+  width: 30%;
+  background-color: #f5f5f5;
   padding: 10px;
   border-radius: 10px;
-  border: none;
+}
+
+.job-item {
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: "flex";
+  align-items: center;
+  justify-content: space-around;
 }
 
-.buttonText {
+.job-item:hover {
+  background-color: #e8f0fe;
+}
+
+.job-title {
+  font-weight: bold;
+}
+
+.job-company {
+  color: gray;
+}
+
+.job-detail {
+  width: 65%;
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.student-info {
+  margin-top: 20px;
+}
+
+.approve-button {
+  background-color: #4caf50;
   color: white;
-  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px;
 }
 
-.icon {
-  font-size: 24px;
-  margin-right: 10px;
+.approve-button:hover {
+  background-color: #45a049;
 }

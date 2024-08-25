@@ -32,7 +32,7 @@ const Dashboard = () => {
           </Link>
 
           {student && student.status !== "current" ? (
-            <Link to={"/job-announcement"}>
+            <Link to={"/JobAnnouncement"}>
               <div className="StudentButton">
                 <h2>Job Announcement</h2>
               </div>
