@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./selectpopulation.css";
 
 const SelectPopulation = () => {
@@ -219,8 +221,14 @@ const SelectPopulation = () => {
         </button>
         <button onClick={handleSaveAndBack} className="save-button">
           Save & Back
-        </button>
+        </button>{" "}
       </div>
+      <Link to="/BothStudent">
+        <div className="Admindashboardback__btn" style={{ marginTop: "20px" }}>
+          <ArrowBackIcon style={{ fontSize: 45 }} />
+          <h2>Back</h2>
+        </div>
+      </Link>
     </div>
   );
 };

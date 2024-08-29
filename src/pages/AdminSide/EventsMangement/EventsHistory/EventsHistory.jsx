@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Pie } from "react-chartjs-2"; // Import Pie from react-chartjs-2
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js"; // Import ChartJS modules
 import "./eventshistory.css";
@@ -89,9 +91,6 @@ const ViewResults = () => {
   return (
     <div className="container">
       <div className="header">
-        <button className="back-button" onClick={handleBack}>
-          &larr;
-        </button>
         <h2>View Results</h2>
       </div>
       <div className="content">
@@ -140,6 +139,15 @@ const ViewResults = () => {
             </button>
           </div>
         )}
+        <Link to="/Survey">
+          <div
+            className="Admindashboardback__btn"
+            style={{ marginTop: "20px" }}
+          >
+            <ArrowBackIcon style={{ fontSize: 45 }} />
+            <h2>Back</h2>
+          </div>
+        </Link>
       </div>
     </div>
   );

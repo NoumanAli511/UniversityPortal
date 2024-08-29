@@ -1,6 +1,7 @@
 import React from "react";
 import "./surveyhistory.css.css";
 import AddPhotoAlternate from "@mui/icons-material/AddPhotoAlternate";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 import { Link } from "react-router-dom";
 
@@ -61,6 +62,15 @@ const Eventshistory = () => {
               <button className="buttnn">Exit</button>
             </Link>
           </div>
+          <Link to="/AdminDashboard">
+            <div
+              className="Admindashboardback__btn"
+              style={{ marginTop: "20px" }}
+            >
+              <ArrowBackIcon style={{ fontSize: 45 }} />
+              <h2>Back</h2>
+            </div>
+          </Link>
         </div>
       </div>
     </>

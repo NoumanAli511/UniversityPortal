@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./createsurvey.css";
+
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const NewSurvey = () => {
   const [title, setTitle] = useState("");
@@ -86,6 +88,12 @@ const NewSurvey = () => {
       <button className="button" onClick={handleSubmit}>
         Next
       </button>
+      <Link to="/Survey">
+        <div className="Admindashboardback__btn" style={{ marginTop: "20px" }}>
+          <ArrowBackIcon style={{ fontSize: 45 }} />
+          <h2>Back</h2>
+        </div>
+      </Link>
     </div>
   );
 };

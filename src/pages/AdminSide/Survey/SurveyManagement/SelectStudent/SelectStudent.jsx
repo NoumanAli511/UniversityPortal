@@ -1,5 +1,6 @@
 import React from "react";
 import "./selectstudent.css";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import LayersRoundedIcon from "@mui/icons-material/LayersRounded";
 import SupervisedUserCircleRoundedIcon from "@mui/icons-material/SupervisedUserCircleRounded";
@@ -26,6 +27,15 @@ const SelectStudent = () => {
             <h1 style={{ color: "PAPAYAWHIP" }}>Alumni Students</h1>
           </div>
         </div>
+        <Link to="/AdminDashboard">
+          <div
+            className="Admindashboardback__btn"
+            style={{ marginTop: "20px" }}
+          >
+            <ArrowBackIcon style={{ fontSize: 45 }} />
+            <h2>Back</h2>
+          </div>
+        </Link>
       </div>
     </div>
   );
