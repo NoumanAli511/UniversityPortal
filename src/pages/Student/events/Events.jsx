@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Modal, Box, Typography, Button, Input } from "@mui/material";
 
 const CombinedView = () => {
   // State for sports events
   const [sportsEvents, setSportsEvents] = useState([]);
   const [eventsLoading, setEventsLoading] = useState(true);
   const [eventsError, setEventsError] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState("events");
+  const [showCommitBox, setShowCommitBox] = useState(false);
+  const [commitText, setCommitText] = useState("");
   // State for job applications
   const [jobApplications, setJobApplications] = useState([]);
   const [jobsLoading, setJobsLoading] = useState(true);
   const [jobsError, setJobsError] = useState("");
 
+  // State for modal
+  const [open, setOpen] = useState(false);
+  const [selectedEvent, setSelectedEvent] = useState(null);
   useEffect(() => {
     fetchEvents();
     fetchJobApplications();
@@ -46,7 +54,6 @@ const CombinedView = () => {
       const data = await response.json();
       setJobApplications(data);
       setJobsLoading(false);
-      console.log(data);
     } catch (error) {
       setJobsError(error.message);
       setJobsLoading(false);
@@ -70,6 +77,58 @@ const CombinedView = () => {
       console.log("Error approving application:", error);
     }
   };
+  // handle Add View
+  const handleAddView = async (studentId, eventID) => {
+    try {
+      const response = await fetch(
+        `http://localhost/studentminiportal/api/student/MarkAsViewed?eventId=${eventID}&student_id=${studentId}`,
+        {
+          method: "POST",
+          "Content-Type": "application/json",
+        }
+      );
+      const result = await response.json();
+      if (result) {
+        console.log(result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const student = JSON.parse(localStorage.getItem("student"));
+
+  // Handle event click
+  const handleEventClick = (event) => {
+    setSelectedEvent(event);
+    setOpen(true);
+    setShowCommitBox(false);
+    handleAddView(student.student_id, event.event_id);
+  };
+  // Handle commit
+  const handleCommit = () => {
+    // Implement your commit logic here
+    // For example, sending a POST request or updating state
+    setShowCommitBox((curr) => !curr);
+  };
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost/studentminiportal/api/student/AddComment?eventId=${selectedEvent.event_id}&studentId=${student.student_id}&comment=${commitText}`,
+        {
+          method: "POST",
+          "Content-Type": "application/json",
+        }
+      );
+      const result = await response.json();
+      if (result) {
+        console.log(result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // Close modal
+  const handleClose = () => setOpen(false);
 
   // Render the content based on the selected type
   const renderContent = () => {
@@ -98,7 +157,9 @@ const CombinedView = () => {
                     borderRadius: "10px",
                     padding: "15px",
                     textAlign: "center",
+                    cursor: "pointer",
                   }}
+                  onClick={() => handleEventClick(event)}
                 >
                   <img
                     src={`http://localhost/studentminiportal/Images/${event.image_path}`}
@@ -242,8 +303,103 @@ const CombinedView = () => {
           >
             {renderContent()}
           </div>
+          <Link to="/Dashboard">
+            <div
+              className="Admindashboardback__btn"
+              style={{ marginTop: "20px" }}
+            >
+              <ArrowBackIcon style={{ fontSize: 45 }} />
+              <h2>Back</h2>
+            </div>
+          </Link>
         </div>
       </div>
+
+      {/* Event Modal */}
+      <Modal open={open} onClose={handleClose}>
+        <Box
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 500,
+            bgcolor: "background.paper",
+            border: "1px solid gray",
+            boxShadow: 24,
+            borderRadius: "20px",
+            p: 4,
+          }}
+        >
+          {selectedEvent && (
+            <div>
+              <Typography
+                variant="h6"
+                component="h2"
+                style={{ textAlign: "center", fontSize: "24px" }}
+              >
+                {selectedEvent.title}
+              </Typography>
+              <Typography
+                sx={{ mt: 2 }}
+                style={{ textAlign: "center", fontSize: "14px" }}
+              >
+                {selectedEvent.description}
+              </Typography>
+              <Typography
+                sx={{ mt: 2 }}
+                style={{ textAlign: "right", fontSize: "12px" }}
+              >
+                Date: {new Date(selectedEvent.event_date).toLocaleDateString()}
+              </Typography>
+              <Typography
+                sx={{ mt: 2 }}
+                style={{ textAlign: "center", fontSize: "17px" }}
+              >
+                Venue: {selectedEvent.venue}
+              </Typography>
+              <img
+                src={`http://localhost/studentminiportal/Images/${selectedEvent.image_path}`}
+                alt={selectedEvent.title}
+                style={{ width: "100%", height: "auto", marginTop: "10px" }}
+              />
+              {showCommitBox ? (
+                <input
+                  value={commitText}
+                  onChange={(e) => setCommitText(e.target.value)}
+                  style={{
+                    border: "1 solid black",
+                    width: "80%",
+                    height: "23px",
+                  }}
+                  placeholder="Enter Commit.."
+                />
+              ) : (
+                <></>
+              )}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-around",
+                }}
+              >
+                <Button
+                  onClick={!showCommitBox ? handleCommit : handleSubmit}
+                  variant="contained"
+                  color="primary"
+                  sx={{ mt: 2 }}
+                >
+                  {!showCommitBox ? "commit" : "Submit"}
+                </Button>
+                <Button onClick={handleClose} variant="outlined" sx={{ mt: 2 }}>
+                  Close
+                </Button>
+              </div>
+            </div>
+          )}
+        </Box>
+      </Modal>
     </React.Fragment>
   );
 };

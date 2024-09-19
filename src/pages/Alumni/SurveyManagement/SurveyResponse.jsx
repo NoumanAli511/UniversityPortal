@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Survey.css"; // Import your custom CSS
 
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Link } from "react-router-dom";
+
 function SurveyResponse() {
   const [surveys, setSurveys] = useState([]);
   const [responses, setResponses] = useState({});
@@ -260,6 +263,15 @@ function SurveyResponse() {
             </div>
           </>
         )}
+        <Link to="/Dashboard">
+          <div
+            className="Admindashboardback__btn"
+            style={{ marginTop: "20px" }}
+          >
+            <ArrowBackIcon style={{ fontSize: 45 }} />
+            <h2>Back</h2>
+          </div>
+        </Link>
       </div>
     </div>
   );

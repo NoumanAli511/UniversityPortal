@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./studentLogin.css";
 import userprofile from "../../../assets/userprofile.png";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 function StudentLogin() {
   const [aridNumber, setAridNumber] = useState("");
@@ -62,6 +64,15 @@ function StudentLogin() {
             <span className="buttonText">Login</span>
           </button>
         </div>
+        <Link to="/">
+          <div
+            className="Admindashboardback__btn"
+            style={{ marginTop: "20px" }}
+          >
+            <ArrowBackIcon style={{ fontSize: 45 }} />
+            <h2>Back</h2>
+          </div>
+        </Link>
       </div>
     </div>
   );

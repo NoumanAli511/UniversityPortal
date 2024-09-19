@@ -49,7 +49,7 @@ const Dashboard = () => {
           </Link> */}
 
           {/* Back button */}
-          <Link to="/AdminLogin">
+          <Link to="/">
             <div
               className="Admindashboardback__btn"
               style={{ marginTop: "20px" }}

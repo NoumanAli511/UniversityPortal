@@ -1,6 +1,7 @@
 import React from "react";
 import "./dashboard.css";
 import { Link } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const Dashboard = () => {
   // Retrieve and parse the student data from localStorage
@@ -42,6 +43,15 @@ const Dashboard = () => {
           <Link to={"/Searching"}>
             <div className="StudentButton">
               <h2>Searching</h2>
+            </div>
+          </Link>
+          <Link to="/">
+            <div
+              className="Admindashboardback__btn"
+              style={{ marginTop: "20px" }}
+            >
+              <ArrowBackIcon style={{ fontSize: 45 }} />
+              <h2>Back</h2>
             </div>
           </Link>
         </div>

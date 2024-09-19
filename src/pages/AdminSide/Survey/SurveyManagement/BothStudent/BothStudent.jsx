@@ -98,12 +98,12 @@ const SurveyQuestions = () => {
               />
             ))}
           </div>
-          <button
+          {/* <button
             className="deleteButton"
             onClick={() => deleteQuestion(index)}
           >
             Delete
-          </button>
+          </button> */}
         </div>
       ))}
       {showNextButton && (

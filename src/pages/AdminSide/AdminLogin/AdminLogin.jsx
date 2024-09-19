@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./adminlogin.css";
 import userprofile from "../../../assets/userprofile.png";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const AdminLogin = () => {
   const [username, setUsername] = useState("");
@@ -76,6 +78,15 @@ const AdminLogin = () => {
             </div>
           </form>
         </div>
+        <Link to="/">
+          <div
+            className="Admindashboardback__btn"
+            style={{ marginTop: "20px" }}
+          >
+            <ArrowBackIcon style={{ fontSize: 45 }} />
+            <h2>Back</h2>
+          </div>
+        </Link>
       </div>
     </div>
   );

@@ -30,31 +30,30 @@ const Mates = () => {
     }
   };
 
-  const handleSearch1 = async () => {
-    try {
-      const response = await fetch(
-        `http://localhost/studentminiportal/api/student/GetAlumni?graduationYear=${graduationYear}&department=${department}&section=${section}`
-      );
-      const data = await response.json();
-      if (response.ok) {
-        console.log(data);
-        setResults((prevResults) => [...prevResults, ...data]);
+  // const handleSearch1 = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       `http://localhost/studentminiportal/api/student/GetAlumni?graduationYear=${graduationYear}&department=${department}&section=${section}`
+  //     );
+  //     const data = await response.json();
+  //     if (response.ok) {
+  //       console.log(data);
+  //       setResults((prevResults) => [...prevResults, ...data]);
 
-        setError("");
-      } else {
-        console.log("error: ", data);
-        setError(data);
-        setResults([]);
-      }
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  //       setError("");
+  //     } else {
+  //       console.log("error: ", data);
+  //       setError(data);
+  //       setResults([]);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error fetching data:", error);
+  //   }
+  // };
 
   const handleSearchAll = async () => {
     setResults([]); // Clear previous results
     await handleSearch();
-    await handleSearch1();
   };
 
   return (
@@ -67,7 +66,24 @@ const Mates = () => {
           className="picker"
         >
           <option value="">Select Graduation Year</option>
-          {Array.from({ length: 14 }, (_, i) => 2010 + i).map((year) => (
+          {[
+            "2010",
+            "2011",
+            "2012",
+            "2013",
+            "2014",
+            "2015",
+            "2016",
+            "2017",
+            "2018",
+            "2019",
+            "2020",
+            "2021",
+            "2022",
+            "2023",
+            "2024",
+            "Continuous",
+          ].map((year) => (
             <option key={year} value={year.toString()}>
               {year}
             </option>

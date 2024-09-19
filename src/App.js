@@ -45,6 +45,11 @@ import AlumniSelect from "./pages/AdminSide/AlumniSelect/AlumniSelect.jsx";
 import PostRequest from "./pages/AdminSide/PostRequest/PostRequest.jsx";
 import Searching from "./pages/Student/Searching/Searching.jsx";
 import SurveyResponse from "./pages/Alumni/SurveyManagement/SurveyResponse.jsx";
+import EditSurvey from "./pages/AdminSide/EventsMangement/editSurvey/EditSurvey.jsx";
+import UpdateQuestionsOnSurvey from "./pages/AdminSide/EventsMangement/UpdateQuestionsOnSurvey/UpdateQuestionsOnSurvey.jsx";
+import SelectStudentEdit from "./pages/AdminSide/EventsMangement/SelectStudentEdit/SelectStudentEdit.jsx";
+import CurrentStudentEdit from "./pages/AdminSide/EventsMangement/EventsHistory/SelectPopulationEdit/CurrentStudentEdit/CurrentStudentEdit.jsx";
+import AlumniStudentEdit from "./pages/AdminSide/EventsMangement/EventsHistory/SelectPopulationEdit/AlumniStudentEdit/AlumniStudentEdit.jsx";
 function App() {
   return (
     <Routes>
@@ -84,6 +89,11 @@ function App() {
       <Route path="/AlumniSelect" element={<AlumniSelect />} />
       {/* Survey Management at Student */}
       <Route path="/SurveyResponse" element={<SurveyResponse />} />
+      <Route path="/editSurvey" element={<EditSurvey />} />
+      <Route path="/updateQuestions" element={<UpdateQuestionsOnSurvey />} />
+      <Route path="/SelectStudentEdit" element={<SelectStudentEdit />} />
+      <Route path="/CurrentStudentEdit" element={<CurrentStudentEdit />} />
+      <Route path="/AlumniStudentEdit" element={<AlumniStudentEdit />} />
 
       <Route path="/BothStudent" element={<BothStudent />} />
       <Route path="/SelectStudent" element={<SelectStudent />} />

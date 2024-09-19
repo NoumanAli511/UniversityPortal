@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-import "./eventsfirstscreen.css";
-import { MdEdit, MdDelete } from "react-icons/md";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { MdEdit, MdDelete, MdComment } from "react-icons/md";
+import { FaEye } from "react-icons/fa6";
+import "./eventsfirstscreen.css";
 
 const Event = () => {
   const getTodayDate = () => {
@@ -24,6 +25,24 @@ const Event = () => {
   const [newEventVenue, setNewEventVenue] = useState("");
   const [newEventDescription, setNewEventDescription] = useState("");
   const [newEventImage, setNewEventImage] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [selectedEventId, setSelectedEventId] = useState(null);
+  const [showCommentsModal, setShowCommentsModal] = useState(false);
+  const [viewedCount, setViewCount] = useState(0);
+
+  const fetchAllViews = async (eventID) => {
+    try {
+      const response = await fetch(
+        `http://localhost/studentminiportal/api/student/fetchAllViewedEvent?eventId=${eventID}`
+      );
+      const result = await response.json();
+      if (result) {
+        setViewCount(result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const fetchAllEvents = async () => {
     try {
@@ -34,7 +53,7 @@ const Event = () => {
       if (result) {
         setEvents(result);
       } else {
-        console.log("not founded");
+        console.log("No events found");
       }
     } catch (error) {
       console.log(error);
@@ -43,7 +62,34 @@ const Event = () => {
 
   useEffect(() => {
     fetchAllEvents();
-  }, [events]);
+  }, []);
+
+  const fetchComments = async (eventId) => {
+    try {
+      const response = await fetch(
+        `http://localhost/studentminiportal/api/student/FetchingAllCommits?eventid=${eventId}`
+      );
+      const result = await response.json();
+      if (result) {
+        setComments(result);
+        setSelectedEventId(eventId);
+      } else {
+        console.log("No comments found");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleCommentButtonClick = async (eventId) => {
+    await fetchComments(eventId);
+    setShowCommentsModal(true);
+  };
+
+  const handleCloseCommentsModal = () => {
+    setShowCommentsModal(false);
+    setComments([]);
+  };
 
   const handleImagePress = (image) => {
     setSelectedImage(image);
@@ -65,7 +111,7 @@ const Event = () => {
       );
       const result = await response.json();
       if (result === "Event Deleted") {
-        alert("Deleted");
+        alert("Event Deleted");
       } else {
         console.log(result);
       }
@@ -77,7 +123,6 @@ const Event = () => {
   const saveEventData = async (eventData) => {
     try {
       const formData = new FormData();
-      console.log(eventData);
       Object.entries(eventData).forEach(([key, value]) => {
         if (Array.isArray(value)) {
           value.forEach((element) => formData.append(key, element));
@@ -111,7 +156,7 @@ const Event = () => {
 
   const handleAddEvent = async () => {
     const newEvent = {
-      id: events?.length + 1,
+      id: events.length + 1,
       title: newEventTitle,
       event_date: newEventDate, // Already in yyyy-MM-dd format
       venue: newEventVenue,
@@ -119,7 +164,7 @@ const Event = () => {
       image: newEventImage,
     };
     setEvents([...events, newEvent]);
-    const result = await saveEventData(newEvent);
+    await saveEventData(newEvent);
 
     setNewEventTitle("");
     setNewEventDate(getTodayDate()); // Reset to today's date
@@ -128,45 +173,76 @@ const Event = () => {
     setNewEventImage(null);
   };
 
-  const renderEventItem = (item, index) => (
-    <div
-      className="eventItem"
-      key={index}
-      onClick={() => handleImagePress(item.image_path)}
-    >
-      <img
-        src={`http://localhost/studentminiportal/Images/${item.image_path}`}
-        alt="Event"
-        className="eventImage"
-      />
-      <div className="eventDetails">
-        <h3 className="eventTitle">{item.title}</h3>
-        <p className="eventDate">
-          {item.event_date && item.event_date.split("T")[0]}
-        </p>
-        <p className="eventVenue">{item.venue}</p>
-        <p className="eventDescription">{item.description}</p>
+  const renderEventItem = (item, index) => {
+    return (
+      <div
+        className="eventItem"
+        key={index}
+        onClick={() => handleImagePress(item.image_path)}
+        onMouseEnter={() => fetchAllViews(item.event_id)}
+      >
+        <img
+          src={`http://localhost/studentminiportal/Images/${item.image_path}`}
+          alt="Event"
+          className="eventImage"
+        />
+        <div className="eventDetails">
+          <h3 className="eventTitle">{item.title}</h3>
+          <p className="eventDate">
+            {item.event_date && item.event_date.split("T")[0]}
+          </p>
+          <p className="eventVenue">{item.venue}</p>
+          <p className="eventDescription">{item.description}</p>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <button
+            className="editButton"
+            onClick={(e) => {
+              e.stopPropagation();
+              navigate("/EventEdit", { state: { event: item } });
+            }}
+          >
+            <MdEdit size={24} color="white" />
+          </button>
+          <button
+            className="deleteButton"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDeleteEvent(item.event_id);
+            }}
+          >
+            <MdDelete size={24} color="white" />
+          </button>
+          <button
+            className="commentButton"
+            style={{
+              border: 0,
+              marginTop: 10,
+              borderRadius: 9,
+              paddingTop: 10,
+              cursor: "pointer",
+            }}
+            onClick={(e) => {
+              e.stopPropagation();
+              handleCommentButtonClick(item.event_id);
+            }}
+          >
+            <MdComment size={24} color="gray" />
+          </button>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <FaEye />
+            {viewedCount.length}
+          </div>
+        </div>
       </div>
-      <button
-        className="editButton"
-        onClick={(e) => {
-          e.stopPropagation();
-          navigate("/EventEdit", { state: { event: item } });
-        }}
-      >
-        <MdEdit size={24} color="#0088B4" />
-      </button>
-      <button
-        className="deleteButton"
-        onClick={(e) => {
-          e.stopPropagation();
-          handleDeleteEvent(item.event_id);
-        }}
-      >
-        <MdDelete size={24} color="white" />
-      </button>
-    </div>
-  );
+    );
+  };
 
   const handleEventAdding = () => {
     setAddEvent((curr) => !curr);
@@ -175,13 +251,21 @@ const Event = () => {
   return (
     <div className="container">
       <div className="header">
+        <Link to="/AdminDashboard">
+          <div
+            className="Admindashboardback__btn"
+            style={{ marginTop: "20px" }}
+          >
+            <ArrowBackIcon style={{ fontSize: 40 }} />
+          </div>
+        </Link>
         <h2 className="headerText">Posted Events</h2>
       </div>
       <div className="eventList">
         <button className="addEventButton" onClick={handleEventAdding}>
           Add New Event
         </button>
-        {events?.map((item, index) => renderEventItem(item, index))}
+        {events.map((item, index) => renderEventItem(item, index))}
       </div>
       {AddEvent && (
         <div className="addEventForm">
@@ -197,7 +281,7 @@ const Event = () => {
             value={newEventDate}
             onChange={(e) => setNewEventDate(e.target.value)}
             className="input"
-            min={getTodayDate()} // Ensure the date is in yyyy-MM-dd format
+            min={getTodayDate()}
           />
           <input
             type="text"
@@ -223,6 +307,40 @@ const Event = () => {
           </button>
         </div>
       )}
+      {showCommentsModal && (
+        <CommentsModal comments={comments} onClose={handleCloseCommentsModal} />
+      )}
+    </div>
+  );
+};
+
+const CommentsModal = ({ comments, onClose }) => {
+  return (
+    <div className="modal">
+      <div className="modalContent">
+        <h2>Comments</h2>
+        <button className="closeButton" onClick={onClose}>
+          Close
+        </button>
+        <table className="commentsTable">
+          <thead>
+            <tr>
+              <th>Student ID</th>
+              <th>Name</th>
+              <th>Comment</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comments.map((comment) => (
+              <tr key={comment.id}>
+                <td>{comment.student_id}</td>
+                <td>{comment.arid_number}</td>
+                <td>{comment.commentText}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
