@@ -3,6 +3,9 @@ import "./searching.css";
 import { FaSearch } from "react-icons/fa";
 //import { Api } from "./LinkApi";
 
+import { Link } from "react-router-dom";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+
 const Mates = () => {
   const [graduationYear, setGraduationYear] = useState("");
   const [department, setDepartment] = useState("");
@@ -140,6 +143,15 @@ const Mates = () => {
               </p>
             </div>
           ))}
+          <Link to="/Dashboard">
+            <div
+              className="Admindashboardback__btn"
+              style={{ marginTop: "20px" }}
+            >
+              <ArrowBackIcon style={{ fontSize: 45 }} />
+              <h2>Back</h2>
+            </div>
+          </Link>
         </div>
       )}
     </div>
