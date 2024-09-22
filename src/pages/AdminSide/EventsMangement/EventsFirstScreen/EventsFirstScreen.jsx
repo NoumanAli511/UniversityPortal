@@ -62,7 +62,7 @@ const Event = () => {
 
   useEffect(() => {
     fetchAllEvents();
-  }, []);
+  }, [events]);
 
   const fetchComments = async (eventId) => {
     try {
@@ -100,8 +100,6 @@ const Event = () => {
   };
 
   const handleDeleteEvent = async (id) => {
-    const updatedEvents = events.filter((event) => event.id !== id);
-    setEvents(updatedEvents);
     try {
       const response = await fetch(
         `http://localhost/studentminiportal/api/event/DeleteEvent?event_id=${id}`,
@@ -112,6 +110,8 @@ const Event = () => {
       const result = await response.json();
       if (result === "Event Deleted") {
         alert("Event Deleted");
+        const updatedEvents = events.filter((event) => event.id !== id);
+        setEvents(updatedEvents);
       } else {
         console.log(result);
       }
@@ -194,41 +194,39 @@ const Event = () => {
           <p className="eventVenue">{item.venue}</p>
           <p className="eventDescription">{item.description}</p>
         </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <button
-            className="editButton"
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-evenly",
+            gap: "8px",
+          }}
+        >
+          <MdEdit
             onClick={(e) => {
               e.stopPropagation();
               navigate("/EventEdit", { state: { event: item } });
             }}
-          >
-            <MdEdit size={24} color="white" />
-          </button>
-          <button
-            className="deleteButton"
+            size={24}
+            color="green"
+          />
+
+          <MdDelete
             onClick={(e) => {
               e.stopPropagation();
               handleDeleteEvent(item.event_id);
             }}
-          >
-            <MdDelete size={24} color="white" />
-          </button>
-          <button
-            className="commentButton"
-            style={{
-              border: 0,
-              marginTop: 10,
-              borderRadius: 9,
-              paddingTop: 10,
-              cursor: "pointer",
-            }}
+            size={24}
+            color="red"
+          />
+          <MdComment
             onClick={(e) => {
               e.stopPropagation();
               handleCommentButtonClick(item.event_id);
             }}
-          >
-            <MdComment size={24} color="gray" />
-          </button>
+            size={24}
+            color="gray"
+          />
           <div
             style={{
               display: "flex",

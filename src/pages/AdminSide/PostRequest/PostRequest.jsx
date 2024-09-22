@@ -11,8 +11,9 @@ const PendingRequest = () => {
         "http://localhost/studentminiportal/api/student/FetchAllJobsApplications"
       );
       const result = await response.json();
-      if (result) {
+      if (result.length > 0) {
         setJobApplications(result);
+        setSelectedJob(result[0]);
       } else {
         alert("No job applications found");
       }

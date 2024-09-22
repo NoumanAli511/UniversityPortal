@@ -221,6 +221,7 @@ function SurveyResponse() {
                         marginRight: 10,
                         padding: "5px 10px",
                         cursor: "pointer",
+                        width: "30%",
                       }}
                       onClick={() =>
                         handleSkipQuestion(question.options.QuestionID)
@@ -232,6 +233,7 @@ function SurveyResponse() {
                       style={{
                         padding: "5px 10px",
                         cursor: "pointer",
+                        width: "40%",
                       }}
                       onClick={() =>
                         handleOptionChange(question.options.QuestionID, 0)

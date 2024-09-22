@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./selectpopulation.css";
 
 const SelectPopulation = () => {
   const [entries, setEntries] = useState([]);
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState([]);
   const [degree, setDegree] = useState([]);
   const [semester, setSemester] = useState([]);
   const [section, setSection] = useState([]);
@@ -14,6 +13,7 @@ const SelectPopulation = () => {
   const [recentSurvey, setRecentSurvey] = useState(
     JSON.parse(localStorage.getItem("recentSurvey"))
   );
+
   const handleCheckboxChange = (event, setState, state) => {
     const value = event.target.value;
     if (state.includes(value)) {
@@ -23,11 +23,19 @@ const SelectPopulation = () => {
     }
   };
 
+  const handleGenderSelection = (genderValue) => {
+    if (genderValue === "both") {
+      setGender(["male", "female"]);
+    } else {
+      setGender([genderValue]);
+    }
+  };
+
   const handleAddNew = () => {
     const newEntry = { gender, degree, semester, section };
     setEntries([...entries, newEntry]);
     // Clear form fields
-    setGender("");
+    setGender([]);
     setDegree([]);
     setSemester([]);
     setSection([]);
@@ -39,17 +47,16 @@ const SelectPopulation = () => {
   };
 
   const handleSaveAndBack = async () => {
-    // Prepare the data to be sent to the backend
     const data = {
       surveyID: recentSurvey.SurveyID,
       gender: gender,
       degree: degree,
       semester: semester,
       section: section,
-      studentType: "current", // or "alumni" depending on your context
-      address: [], // Add address if needed
-      Technology: [], // Add Technology if needed
-      graduation: [], // Add graduation year if needed
+      studentType: "current",
+      address: [],
+      Technology: [],
+      graduation: [],
     };
 
     try {
@@ -66,7 +73,6 @@ const SelectPopulation = () => {
 
       if (response.ok) {
         const result = await response.json();
-        console.log("Response from server:", result);
         if (result === "Data successfully inserted") {
           navigate("/SelectStudent");
           alert(result);
@@ -74,7 +80,7 @@ const SelectPopulation = () => {
           alert(result);
         }
       } else {
-        console.error("Error saving population data:", response.statusText);
+        console.log("Error saving population data:", response.statusText);
       }
     } catch (error) {
       console.error("Error saving population data:", error);
@@ -84,7 +90,7 @@ const SelectPopulation = () => {
   const handleNext = async () => {
     const data = entries.map((entry) => ({
       surveyId: recentSurvey.SurveyId,
-      gender: entry.gender,
+      gender: entry.gender.join(", "),
       degree: entry.degree.join(", "),
       semester: entry.semester.join(", "),
       section: entry.section.join(", "),
@@ -121,17 +127,26 @@ const SelectPopulation = () => {
         <label>Gender</label>
         <div className="gender-buttons">
           <button
-            onClick={() => setGender("male")}
-            className={gender === "male" ? "active" : ""}
+            onClick={() => handleGenderSelection("male")}
+            className={gender.includes("male") ? "active" : ""}
           >
             Male
           </button>
           <button
-            onClick={() => setGender("female")}
-            className={gender === "female" ? "active" : ""}
+            onClick={() => handleGenderSelection("female")}
+            className={gender.includes("female") ? "active" : ""}
           >
             Female
           </button>
+          <label>
+            <input
+              type="checkbox"
+              value="both"
+              checked={gender.includes("male") && gender.includes("female")}
+              onChange={(e) => handleGenderSelection("both")}
+            />
+            Both
+          </label>
         </div>
       </div>
       <div className="form-group">
@@ -202,9 +217,9 @@ const SelectPopulation = () => {
         {entries.map((entry, index) => (
           <div key={index} className="entry-item">
             <p>
-              Gender: {entry.gender}, Degree: {entry.degree.join(", ")},
-              Semester: {entry.semester.join(", ")}, Section:{" "}
-              {entry.section.join(", ")}
+              Gender: {entry.gender.join(", ")}, Degree:{" "}
+              {entry.degree.join(", ")}, Semester: {entry.semester.join(", ")},
+              Section: {entry.section.join(", ")}
             </p>
             <button
               onClick={() => handleDelete(index)}

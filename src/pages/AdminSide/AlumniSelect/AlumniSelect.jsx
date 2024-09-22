@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const CombinedSelection = () => {
   const [entries, setEntries] = useState([]);
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState([]);
   const [degree, setDegree] = useState([]);
   const [address, setAddress] = useState([]);
   const [graduation, setGraduation] = useState([]);
@@ -24,11 +24,27 @@ const CombinedSelection = () => {
     }
   };
 
+  const handleGenderChange = (value) => {
+    if (value === "Both") {
+      setGender(["Male", "female"]); // Select both Male and Female
+    } else {
+      setGender([value]);
+    }
+  };
+
+  const handleBothCheckboxChange = (e) => {
+    if (e.target.checked) {
+      setGender(["Male", "female"]);
+    } else {
+      setGender([]); // Clear both selections if "Both" is unchecked
+    }
+  };
+
   const handleAddNew = () => {
     const newEntry = { graduation, degree, address, technology, gender };
     setEntries([...entries, newEntry]);
     // Clear form fields
-    setGender("");
+    setGender([]);
     setDegree([]);
     setAddress([]);
     setGraduation([]);
@@ -97,31 +113,40 @@ const CombinedSelection = () => {
     "2024",
   ];
 
+  const handleGenderSelection = (genderValue) => {
+    if (genderValue === "both") {
+      setGender(["male", "female"]);
+    } else {
+      setGender([genderValue]);
+    }
+  };
+
   return (
     <div className="container">
       <h1 className="title">Select Population</h1>
       <div className="form-group">
         <label>Gender</label>
-        <div className="gender-radios">
-          <label>
-            <input
-              type="radio"
-              name="gender"
-              value="Male"
-              checked={gender === "Male"}
-              onChange={(e) => setGender(e.target.value)}
-            />
+        <div className="gender-buttons">
+          <button
+            onClick={() => handleGenderSelection("male")}
+            className={gender.includes("male") ? "active" : ""}
+          >
             Male
-          </label>
+          </button>
+          <button
+            onClick={() => handleGenderSelection("female")}
+            className={gender.includes("female") ? "active" : ""}
+          >
+            Female
+          </button>
           <label>
             <input
-              type="radio"
-              name="gender"
-              value="Female"
-              checked={gender === "Female"}
-              onChange={(e) => setGender(e.target.value)}
+              type="checkbox"
+              value="both"
+              checked={gender.includes("male") && gender.includes("female")}
+              onChange={(e) => handleGenderSelection("both")}
             />
-            Female
+            Both
           </label>
         </div>
       </div>
@@ -141,6 +166,7 @@ const CombinedSelection = () => {
           ))}
         </div>
       </div>
+
       <div className="form-group">
         <label>Address</label>
         <div className="address-checkboxes">
@@ -157,6 +183,7 @@ const CombinedSelection = () => {
           ))}
         </div>
       </div>
+
       <div className="form-group">
         <label>Graduation Year</label>
         <div className="graduation-years">
@@ -175,6 +202,7 @@ const CombinedSelection = () => {
           ))}
         </div>
       </div>
+
       <div className="form-group">
         <label>Technology</label>
         <div className="technology-checkboxes">
@@ -193,13 +221,15 @@ const CombinedSelection = () => {
           ))}
         </div>
       </div>
+
       <div className="entry-list">
         {entries.map((entry, index) => (
           <div key={index} className="entry-item">
             <p>
               Graduation Year: {entry.graduation.join(", ")}, Degree:{" "}
               {entry.degree.join(", ")}, Address: {entry.address.join(", ")},
-              Technology: {entry.technology.join(", ")}, Gender: {entry.gender}
+              Technology: {entry.technology.join(", ")}, Gender:{" "}
+              {entry.gender.join(", ")}
             </p>
             <button
               onClick={() => handleDelete(index)}
@@ -210,6 +240,7 @@ const CombinedSelection = () => {
           </div>
         ))}
       </div>
+
       <div className="button-group">
         <button onClick={handleAddNew} className="add-button">
           Add New

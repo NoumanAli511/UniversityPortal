@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import "./editprofile.css";
+import { useLocation } from "react-router-dom";
 
 const EditProfile = () => {
-  const userString = localStorage.getItem("admin");
-  const admin = userString && JSON.parse(userString);
-  const [user, setUser] = useState(admin.admin);
-  const [email, setEmail] = useState(user.email);
-  const [phone_no, setPhone_no] = useState(user.phone_no);
+  const location = useLocation();
+  const userFounded = location.state;
+  console.log(userFounded);
+  const [email, setEmail] = useState(userFounded.email);
+  const [phone_no, setPhone_no] = useState(
+    userFounded.phone_number || userFounded.phone_no
+  );
 
   const handleSubmit = async () => {
     if (email && phone_no) {
       const response = await fetch(
-        `http://localhost/studentminiportal/api/miniportal/updateEmailAndPhoneNumber?email=${email}&phone_no=${phone_no}`,
+        `http://localhost/studentminiportal/api/miniportal/updateEmailAndPhoneNumberOfStudent?email=${email}&phone_no=${phone_no}&studentId=${userFounded.student_id}`,
         {
           method: "POST",
           headers: {
@@ -20,7 +23,9 @@ const EditProfile = () => {
         }
       );
       const result = response.json();
-      console.log(result);
+      if (result) {
+        alert("updated the Records");
+      }
     } else {
       alert("Fields must not be empty");
     }

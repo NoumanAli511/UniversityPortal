@@ -20,7 +20,7 @@ const EditProfile = () => {
         }
       );
       const result = response.json();
-      console.log(result);
+      alert("Updated the records");
     } else {
       alert("Fields must not be empty");
     }

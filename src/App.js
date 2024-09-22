@@ -50,6 +50,7 @@ import UpdateQuestionsOnSurvey from "./pages/AdminSide/EventsMangement/UpdateQue
 import SelectStudentEdit from "./pages/AdminSide/EventsMangement/SelectStudentEdit/SelectStudentEdit.jsx";
 import CurrentStudentEdit from "./pages/AdminSide/EventsMangement/EventsHistory/SelectPopulationEdit/CurrentStudentEdit/CurrentStudentEdit.jsx";
 import AlumniStudentEdit from "./pages/AdminSide/EventsMangement/EventsHistory/SelectPopulationEdit/AlumniStudentEdit/AlumniStudentEdit.jsx";
+import PasswordGenerator from "./pages/Student/profile/PasswordChanging/PasswordGenerator.jsx";
 function App() {
   return (
     <Routes>
@@ -94,6 +95,7 @@ function App() {
       <Route path="/SelectStudentEdit" element={<SelectStudentEdit />} />
       <Route path="/CurrentStudentEdit" element={<CurrentStudentEdit />} />
       <Route path="/AlumniStudentEdit" element={<AlumniStudentEdit />} />
+      <Route path="/passwordGenerator" element={<PasswordGenerator />} />
 
       <Route path="/BothStudent" element={<BothStudent />} />
       <Route path="/SelectStudent" element={<SelectStudent />} />

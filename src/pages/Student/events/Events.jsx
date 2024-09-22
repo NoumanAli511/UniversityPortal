@@ -46,7 +46,7 @@ const CombinedView = () => {
   const fetchJobApplications = async () => {
     try {
       const response = await fetch(
-        "http://localhost/studentminiportal/api/student/FetchAllJobsApplications"
+        "http://localhost/studentminiportal/api/student/FetchAllJobsApproved"
       );
       if (!response.ok) {
         throw new Error("Failed to fetch job applications");
@@ -54,6 +54,7 @@ const CombinedView = () => {
       const data = await response.json();
       setJobApplications(data);
       setJobsLoading(false);
+      console.log(data);
     } catch (error) {
       setJobsError(error.message);
       setJobsLoading(false);
@@ -122,6 +123,10 @@ const CombinedView = () => {
       const result = await response.json();
       if (result) {
         console.log(result);
+        alert("Commited Succesfully");
+        // Clear the input after successful submission
+        setCommitText("");
+        setShowCommitBox(false);
       }
     } catch (error) {
       console.log(error);

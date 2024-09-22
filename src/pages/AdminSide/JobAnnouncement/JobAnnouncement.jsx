@@ -8,21 +8,10 @@ const JobScreen = () => {
   const [jobTitle, setJobTitle] = useState("");
   const [city, setCity] = useState("");
   const [desc, setDesc] = useState("");
-
-  const [stdid, setStdId] = useState(null);
+  const value = JSON.parse(localStorage.getItem("student"));
+  console.log(value);
+  const [stdid, setStdId] = useState(value.student_id);
   const navigate = useNavigate();
-
-  const _retrieveData = async () => {
-    try {
-      const value = localStorage.getItem("student");
-      if (value !== null) {
-        const parsedadmin = JSON.parse(value);
-        setStdId(parsedadmin.student_id);
-      }
-    } catch (error) {
-      console.error("Error retrieving data: ", error);
-    }
-  };
 
   const saveJobDetails = async () => {
     try {
@@ -44,11 +33,6 @@ const JobScreen = () => {
       console.log("Error: ", error);
     }
   };
-
-  useEffect(() => {
-    _retrieveData();
-  }, []);
-
   return (
     <div className="container">
       <h1 className="heading">Job Details</h1>

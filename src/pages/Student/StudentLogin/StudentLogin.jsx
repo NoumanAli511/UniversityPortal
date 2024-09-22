@@ -46,7 +46,9 @@ function StudentLogin() {
           <h1>Student Login</h1>
         </div>
         <div className="StdloginPage__input">
-          {errorData && <p>{errorData}</p>}
+          {errorData && (
+            <p style={{ color: "red", fontWeight: "600" }}>{errorData}</p>
+          )}
           <input
             className="input"
             placeholder="Enter Your ARID Number"

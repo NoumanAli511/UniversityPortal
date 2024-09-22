@@ -8,6 +8,8 @@
   background-color: #f5f5f5;
   padding: 10px;
   border-radius: 10px;
+  overflow: scroll;
+  height: 600px;
 }
 
 .job-item {

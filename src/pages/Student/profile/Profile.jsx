@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./profile.css";
 import logo from "../../../assets/logo.jpeg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const StudentProfile = () => {
@@ -9,6 +9,7 @@ const StudentProfile = () => {
   const studentFounded = userString && JSON.parse(userString);
   const [student, setstudent] = useState(studentFounded);
   console.log(student);
+  const navigate = useNavigate();
   return (
     <>
       <div className="profilePage__mainContainer">
@@ -60,8 +61,16 @@ const StudentProfile = () => {
             </div>
             <br></br>
             <div className="rows_btn">
-              <Link to="/EditProfile">
-                <button className="editbtn">Edit</button>
+              <button
+                className="editbtn"
+                onClick={() => {
+                  navigate("/EditProfile", { state: student });
+                }}
+              >
+                Edit
+              </button>
+              <Link to="/passwordGenerator">
+                <button className="change-password">Change Password</button>
               </Link>
             </div>
 
